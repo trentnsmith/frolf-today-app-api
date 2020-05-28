@@ -1,4 +1,5 @@
-const { API_TOKEN } = require('../config');
+require('dotenv').config()
+const { API_TOKEN } = require('./src/config');
 const logger = require('./logger');
 
 function validateBearerToken(req, res, next) {
