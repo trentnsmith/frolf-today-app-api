@@ -17,6 +17,7 @@ app.use(helmet())
 app.use(cors())
 
 app.get('/api/', (req, res) => {
+    res.send('/api/ is working')
     return res.status(200).end();
 })
 
