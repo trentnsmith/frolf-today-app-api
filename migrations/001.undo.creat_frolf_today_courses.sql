@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS frolf_today_courses;

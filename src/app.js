@@ -16,8 +16,8 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
 
-app.get('/api/*', (req, res) => {
-    res.json({ok: true})
+app.get('/api/', (req, res) => {
+    return res.status(200).end();
 })
 
 app.use(function errorHandler(error, req, res, next) {
