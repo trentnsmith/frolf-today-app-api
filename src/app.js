@@ -5,6 +5,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
 const validateBearerToken = require('../validateBearerToken')
+const coursesRouter = require('./courses/courses-router')
 
 const app = express()
 
@@ -18,10 +19,13 @@ app.use(helmet())
 app.use(cors())
 app.use(validateBearerToken)
 
+app.use('/api/courses', coursesRouter)
+
 app.get('/api/', (req, res) => {
     res.send('/api/ is working')
     return res.status(200).end();
 })
+
 
 app.use(function errorHandler(error, req, res, next) {
     let response
