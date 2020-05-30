@@ -14,7 +14,34 @@ coursesRouter
     .get((req, res, next) => {
         CoursesService.getAllCourses(req.app.get('db'))
         .then(courses => {
-            return res.json(courses.map(serializeCourse));
+            res.json(courses.map(serializeCourse));
         })
         .catch(next)
     })
+  /*
+    .post(jsonParser, (req, res, next) => {
+        const { course_name, rating, holes, zipcode } = req
+    })
+    */
+
+
+coursesRouter
+    .route('/:course_id')
+    .all((req, res, next) => {
+        CoursesService.getById(
+            req.app.get('db'),
+            req.params.course_id
+        )
+        .then(course => {
+            if (!course) {
+                return res.status(404).json({
+                    error: { message: `Course doesn't exist` }
+                })
+            }
+            res.course = course
+            next()
+        })
+    })
+    .get((req, res, next) => {
+        res.json(serializeCourse(res.course))
+    })    
