@@ -19,7 +19,7 @@ app.use(helmet())
 app.use(cors())
 app.use(validateBearerToken)
 
-app.use('/api/courses', coursesRouter)
+//app.use('/api/courses', coursesRouter)
 
 app.get('/api/', (req, res) => {
     res.send('/api/ is working')
