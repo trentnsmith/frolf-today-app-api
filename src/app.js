@@ -20,9 +20,9 @@ app.use(helmet())
 app.use(cors())
 //app.use(validateBearerToken)
 
-app.use('/api/courses', coursesRouter)
+app.use('/courses', coursesRouter)
 
-app.get('/api/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('/api/ is working')
     return res.status(200).end();
 })

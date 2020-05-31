@@ -45,3 +45,5 @@ coursesRouter
     .get((req, res, next) => {
         res.json(serializeCourse(res.course))
     })    
+
+module.exports = coursesRouter    
