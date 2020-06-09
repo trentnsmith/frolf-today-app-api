@@ -7,6 +7,7 @@ const { NODE_ENV } = require('./config')
 const validateBearerToken = require('../validateBearerToken')
 const coursesRouter = require('./courses/courses-router')
 const COURSES = require('./courses.json')
+const axios = require('axios')
 
 const app = express()
 
@@ -19,6 +20,10 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
 //app.use(validateBearerToken)
+
+
+
+
 
 app.use('/courses', coursesRouter)
 

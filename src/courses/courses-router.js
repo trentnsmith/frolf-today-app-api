@@ -3,6 +3,9 @@ const express = require('express');
 const CoursesService = require('./courses.service');
 const coursesRouter = express.Router();
 const jsonParser = express.json();
+const axios = require('axios');
+const url = require('url');
+
 
 const serializeCourse = course => ({
     id: course.id,
@@ -12,17 +15,42 @@ const serializeCourse = course => ({
 coursesRouter
     .route('/')
     .get((req, res, next) => {
-        CoursesService.getAllCourses(req.app.get('db'))
-        .then(courses => {
-            res.json(courses.map(serializeCourse));
+        const zip = url.parse(req.url,true).query.zip
+        const course_id = url.parse(req.url,true).query.course_id
+        
+        axios({
+            url: 'https://api.pdga.com/services/json/user/login',
+            method: 'post',
+            headers: { "content-type": 'application/json' },
+            data: { "username": "TSmith12", "password": "Tnewman!2"}
+        })  .then((response) => {
+              
+            getCourses(response.data, zip, course_id)
+            .then((response) => {
+                res.json(response.data)
+            })
+            
         })
-        .catch(next)
+            .catch(next)
+        
+        const getCourses = (response, zip, course_id) => {
+            let query = ''
+            if (zip) {
+               query = `postal_code=${zip}`
+            } else if (course_id) {
+                query = `course_id=${course_id}`
+            }
+            return axios({
+                url: `http://api.pdga.com/services/json/course?${query}`,
+                method: 'get',
+                headers: { "Cookie": response.session_name + "=" + response.sessid }
+        
+            })
+            .catch(console.error)
+        }    
     })
-  /*
-    .post(jsonParser, (req, res, next) => {
-        const { course_name, rating, holes, zipcode } = req
-    })
-    */
+ 
+    
 
 
 coursesRouter
@@ -41,6 +69,7 @@ coursesRouter
             res.course = course
             next()
         })
+        .catch(next)
     })
     .get((req, res, next) => {
         res.json(serializeCourse(res.course))
