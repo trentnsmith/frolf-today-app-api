@@ -25,7 +25,7 @@ app.use(cors())
 
 
 
-app.use('/courses', coursesRouter)
+app.use('/api/courses', coursesRouter)
 
 app.get('/', (req, res) => {
     res.send('/api/ is working')
