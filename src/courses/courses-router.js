@@ -5,11 +5,12 @@ const coursesRouter = express.Router();
 const jsonParser = express.json();
 const axios = require('axios');
 const url = require('url');
+const xss = require('xss')
 
 
 const serializeCourse = course => ({
     id: course.id,
-    course_name: course.course_name
+    course_name: xss(course.course_name),
 })
 
 coursesRouter

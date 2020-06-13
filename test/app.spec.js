@@ -1,4 +1,4 @@
-
+/*
 const app = require('../src/app')
 
 describe('App', () => {
@@ -8,3 +8,4 @@ describe('App', () => {
       .expect(200, 'Hello, world!')
   })
 })
+*/
