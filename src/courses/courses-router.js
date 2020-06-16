@@ -11,6 +11,19 @@ const xss = require('xss')
 const serializeCourse = course => ({
     id: course.id,
     course_name: xss(course.course_name),
+    holes: (course.holes),
+    zipcode: (course.postal_code),
+    latitude: (course.latitude),
+    longitude: (course.longitude),
+    city: (course.city),
+    state_name: (course.state_province_name),
+    website_title: (course.external_link_1_title),
+    wesbite_url: (course.external_link_1_url),
+    basket_types: (course.basket_types),
+    tee_types: (course.tee_types),
+    course_length: (course.total_length_of_course),
+    private_course: (course.private),
+    description: (course.course_description)
 })
 
 coursesRouter
@@ -46,6 +59,16 @@ coursesRouter
                 method: 'get',
                 headers: { "Cookie": response.session_name + "=" + response.sessid }
         
+            })
+            .then((resJson) => {
+                let myRes = resJson.map((obj) => {
+                    return {
+                        obj.course_name,
+                        obj.holes,
+                        obj. 
+                    }
+                })
+                knex.insert(resJson)
             })
             .catch(console.error)
         }    
