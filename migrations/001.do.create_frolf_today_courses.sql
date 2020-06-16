@@ -12,6 +12,6 @@ CREATE TABLE frolf_today_courses (
     basket_types TEXT,
     tee_types TEXT,
     course_length TEXT,
-    private_course: TEXT,
+    private_course TEXT,
     description TEXT NOT NULL
     );

@@ -54,7 +54,7 @@ coursesRouter
             } else if (course_id) {
                 query = `course_id=${course_id}`
             }
-            return axios({
+            axios({
                 url: `http://api.pdga.com/services/json/course?${query}`,
                 method: 'get',
                 headers: { "Cookie": response.session_name + "=" + response.sessid }
@@ -62,16 +62,32 @@ coursesRouter
             })
             .then((resJson) => {
                 let myRes = resJson.map((obj) => {
-                    return {
+                    return (
                         obj.course_name,
                         obj.holes,
-                        obj. 
-                    }
+                        obj.zipcode,
+                        obj.latitude,
+                        obj.longitude,
+                        obj.city,
+                        obj.state_name,
+                        obj.website_title,
+                        obj.wesbite_url,
+                        obj.basket_types,
+                        obj.tee_types,
+                        obj.course_length,
+                        obj.private_course,
+                        obj.description
+                    )
                 })
                 knex.insert(resJson)
             })
             .catch(console.error)
-        }    
+        }
+        CoursesService.getAllCourses(req.app.get('db'))
+            .then(course => {
+                res.json(course.map(serializeCourse))
+            })
+            .catch(next)    
     })
  
     
