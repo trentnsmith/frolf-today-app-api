@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const CoursesService = require('./courses.service');
 const coursesRouter = express.Router();
@@ -88,9 +87,7 @@ coursesRouter
                 res.json(course.map(serializeCourse))
             })
             .catch(next)    
-    })
- 
-    
+    })   
 
 
 coursesRouter
@@ -113,6 +110,66 @@ coursesRouter
     })
     .get((req, res, next) => {
         res.json(serializeCourse(res.course))
+    })
+    .delete((req, res, next) => {
+        CoursesService.deleteCourse(
+            req.app.get('db'),
+            req.params.course_id
+        )
+        .then(numRowsAffected => {
+            res.status(204).end()
+        })
+        .catch(next)
+    })
+    .patch(jsonParser, (req, res, next) => {
+        const { 
+            course_name,
+            holes,
+            zipcode,
+            latitude,
+            longitude,
+            city,
+            state_name,
+            website_title,
+            wesbite_url,
+            basket_types,
+            tee_types,
+            course_length,
+            private_course,
+            description
+        } = req.body;
+        const courseToUpdate = { 
+            course_name,
+            holes,
+            zipcode,
+            latitude,
+            longitude,
+            city,
+            state_name,
+            website_title,
+            wesbite_url,
+            basket_types,
+            tee_types,
+            course_length,
+            private_course,
+            description
+        };
+
+        const numberOfValues = Object.values(courseToUpdate).filter(Boolean).length;
+        if (numberOfValues === 0)
+            return res.status(400).json({
+                error: { message: 'Must include all attributes' }
+            });
+        
+        CoursesService.updateCourse(
+            req.app.get('db'),
+            req.params.course_id,
+            courseToUpdate
+        )
+            .then(numRowsAffected => {
+                res.status(204).end();
+            })
+            .catch(next);
     })    
 
 module.exports = coursesRouter    
