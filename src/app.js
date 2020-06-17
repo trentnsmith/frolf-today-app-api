@@ -6,8 +6,8 @@ const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
 const validateBearerToken = require('../validateBearerToken')
 const coursesRouter = require('./courses/courses-router')
-const COURSES = require('./courses.json')
-const axios = require('axios')
+
+
 
 const app = express()
 

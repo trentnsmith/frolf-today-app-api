@@ -54,7 +54,7 @@ coursesRouter
                 query = `course_id=${course_id}`
             }
             axios({
-                url: `http://api.pdga.com/services/json/course?${query}`,
+                url: `http://api.pdga.com/services/json/course`,
                 method: 'get',
                 headers: { "Cookie": response.session_name + "=" + response.sessid }
         
