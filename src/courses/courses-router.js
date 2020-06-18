@@ -4,7 +4,7 @@ const coursesRouter = express.Router();
 const jsonParser = express.json();
 const axios = require('axios');
 const url = require('url');
-const xss = require('xss')
+const xss = require('xss');
 
 
 const serializeCourse = course => ({
@@ -23,7 +23,7 @@ const serializeCourse = course => ({
     course_length: (course.total_length_of_course),
     private_course: (course.private),
     description: (course.course_description)
-})
+});
 
 coursesRouter
     .route('/')
@@ -87,7 +87,7 @@ coursesRouter
                 res.json(course.map(serializeCourse))
             })
             .catch(next)    
-    })   
+    });
 
 
 coursesRouter
@@ -170,6 +170,6 @@ coursesRouter
                 res.status(204).end();
             })
             .catch(next);
-    })    
+    });  
 
-module.exports = coursesRouter    
+module.exports = coursesRouter;  

@@ -1,35 +1,28 @@
-require('dotenv').config()
-const express = require('express')
-const morgan = require('morgan')
-const cors = require('cors')
-const helmet = require('helmet')
-const { NODE_ENV } = require('./config')
-const coursesRouter = require('./courses/courses-router')
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const helmet = require('helmet');
+const { NODE_ENV } = require('./config');
+const coursesRouter = require('./courses/courses-router');
 
 
-
-const app = express()
-
+const app = express();
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
 
-app.use(morgan(morganOption))
-app.use(helmet())
-app.use(cors())
+app.use(morgan(morganOption));
+app.use(helmet());
+app.use(cors());
 
-
-
-
-
-
-app.use('/api/courses', coursesRouter)
+app.use('/api/courses', coursesRouter);
 
 app.get('/', (req, res) => {
     res.send('/api/ is working')
     return res.status(200).end();
-})
+});
 
 
 app.use(function errorHandler(error, req, res, next) {
@@ -41,6 +34,6 @@ app.use(function errorHandler(error, req, res, next) {
         response = { message: error.message, error }
     }
     res.status(500).json(response)
-})
+});
 
-module.exports = app
+module.exports = app;

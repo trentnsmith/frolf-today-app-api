@@ -28,6 +28,6 @@ const CoursesService = {
             .where('id', id)
             .update(updateFields)
     },
-}
+};
 
-module.exports = CoursesService
+module.exports = CoursesService;
