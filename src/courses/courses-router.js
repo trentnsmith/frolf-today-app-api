@@ -31,6 +31,7 @@ coursesRouter
         const zip = url.parse(req.url,true).query.zip
         const course_id = url.parse(req.url,true).query.course_id
         
+        
         axios({
             url: 'https://api.pdga.com/services/json/user/login',
             method: 'post',
@@ -89,7 +90,7 @@ coursesRouter
             .catch(next)    
     });
 
-
+//coursesRouter for courseDetail; user will see data based on the ID
 coursesRouter
     .route('/:course_id')
     .all((req, res, next) => {

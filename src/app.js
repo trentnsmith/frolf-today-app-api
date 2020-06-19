@@ -13,10 +13,12 @@ const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
 
+//use of middlewares  
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
+//use of router
 app.use('/api/courses', coursesRouter);
 
 app.get('/', (req, res) => {
@@ -24,7 +26,7 @@ app.get('/', (req, res) => {
     return res.status(200).end();
 });
 
-
+//creating server errorHandler
 app.use(function errorHandler(error, req, res, next) {
     let response
     if (NODE_ENV === 'production') {

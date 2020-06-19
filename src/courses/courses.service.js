@@ -1,10 +1,12 @@
 const CoursesService = {
+    //returns all courses in database
     getAllCourses(db) {
         return db
             .select('*')
             .from('frolf_today_courses');
     },
 
+    //returns courses by the id
     getById(db, id) {
         return db
             .select('*')
@@ -13,6 +15,7 @@ const CoursesService = {
             .first();
     },
 
+    //remove course from database by the id
     deleteCourse (db, id) {
         return db
             .select('*')
@@ -21,6 +24,7 @@ const CoursesService = {
             .delete();
     },
 
+    //ability to update all fields for a course by id
     updateCourse(db, id, updateFields) {
         return db
             .select('*')
