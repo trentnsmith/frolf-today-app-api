@@ -25,6 +25,7 @@ Course Detail Page:
 ## API used
 
 Google Maps API
+
 PDGA API
 
 ## Technology
