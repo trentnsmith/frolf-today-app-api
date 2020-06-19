@@ -22,11 +22,10 @@ Course Detail Page:
 
 ![frolf_today_course_detail](https://user-images.githubusercontent.com/58092710/84978965-dd9fcb80-b0f3-11ea-9c83-46e03947ad50.JPG)
 
-## API End Points
+## API used
 
-
-
-
+Google Maps API
+PDGA API
 
 ## Technology
 
