@@ -32,6 +32,16 @@ const CoursesService = {
             .where('id', id)
             .update(updateFields)
     },
+
+    createCourse(db, course) {
+        return db
+            .insert(course)
+            .into('frolf_today_courses')
+            .returning('*')
+            .then((rows) => {
+                return rows[0]
+            });
+    },
 };
 
 module.exports = CoursesService;
