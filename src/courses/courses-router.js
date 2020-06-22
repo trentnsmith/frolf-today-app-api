@@ -10,12 +10,12 @@ const serializeCourse = course => ({
     id: course.id,
     course_name: xss(course.course_name),
     holes: (course.holes),
-    zipcode: (course.postal_code),
+    zipcode: (course.zipcode),
     latitude: parseInt(course.latitude),
     longitude: parseInt(course.longitude),
     city: (course.city),
-    state_name: (course.state_province_name),
-    website_title: (course.external_link_1_title),
+    state_name: (course.state_),
+    website_title: (course.website_title),
     website_url: (course.external_link_1_url),
     basket_types: (course.basket_types),
     tee_types: (course.tee_types),
@@ -27,13 +27,19 @@ const serializeCourse = course => ({
 coursesRouter
     .route('/')
     .get((req, res, next) => {
+        console.log('req query', req.query)
         CoursesService.getAllCourses(req.app.get('db'))
             .then(course => {
-                res.json(course.map(serializeCourse))
+                console.log('course', course)
+                let newCourse = course.filter((c) => {
+                    return Number(c.zipcode) === Number(req.query.zipcode)
+                })
+                console.log('newcourse', newCourse)
+                res.json(newCourse.map(serializeCourse))
             })
             .catch(next)    
     })
-    .post(jsonParser), (req, res, next) => {
+    .post(jsonParser, (req, res, next) => {
         const { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description } = req.body
         const newCourse = { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description }
 
@@ -56,7 +62,7 @@ coursesRouter
                 .json(serializeCourse(course))
         })
         .catch(next)
-    }
+    })
 
 
 coursesRouter
