@@ -14,14 +14,14 @@ const serializeCourse = course => ({
     latitude: parseInt(course.latitude),
     longitude: parseInt(course.longitude),
     city: (course.city),
-    state_name: (course.state_),
+    state_name: (course.state_name),
     website_title: (course.website_title),
-    website_url: (course.external_link_1_url),
+    website_url: (course.website_url),
     basket_types: (course.basket_types),
     tee_types: (course.tee_types),
-    course_length: (course.total_length_of_course),
-    private_course: (course.private),
-    description: (course.course_description)
+    course_length: (course.course_length),
+    private_course: (course.private_course),
+    description: (course.description)
 });
 
 coursesRouter
@@ -32,12 +32,12 @@ coursesRouter
             .then(course => {
                 console.log('course', course)
                 let newCourse = course.filter((c) => {
-                    return Number(c.zipcode) === Number(req.query.zipcode)
+                    return Number(c.zipcode) === Number(req.query.zip)
                 })
                 console.log('newcourse', newCourse)
                 res.json(newCourse.map(serializeCourse))
             })
-            .catch(next)    
+            .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
         const { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description } = req.body

@@ -3,8 +3,7 @@ const CoursesService = {
     getAllCourses(db) {
         return db
             .select('*')
-            .from('frolf_today_courses')
-            .limit(10);
+            .from('frolf_today_courses');
     },
 
     //returns courses by the id
