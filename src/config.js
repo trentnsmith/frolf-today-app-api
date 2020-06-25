@@ -4,3 +4,4 @@ module.exports = {
     DATABASE_URL: process.env.DATABASE_URL || 'postgresql://trent@localhost/frolf_today_courses',
     API_TOKEN: process.env.API_TOKEN,
   }
+  
