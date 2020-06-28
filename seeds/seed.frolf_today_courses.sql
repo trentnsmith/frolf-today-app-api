@@ -1,4 +1,4 @@
-INSERT INTO frolf_today_courses (course_name, holes, zipcode, latitude, longitude, city, state_name)
+INSERT INTO frolf_today_courses (course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description )
 VALUES
     ('The Links', 18, 68112, 41.3385, -96.0472, 'Omaha', 'Nebraska'),
     ('Treasure Cove', 18, 51503, 41.2151, -96.1203, 'Council Bluffs', 'Iowa'),
