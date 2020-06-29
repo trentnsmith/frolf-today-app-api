@@ -20,12 +20,12 @@ describe('Courses endpoints', () => {
 
     afterEach('cleanup', () => db('frolf_today_courses_test').truncate())
 
-    describe('GET /api/courses', () => {
+    describe.only('GET /api/courses', () => {
         context(`Given no courses`, () => {
           it(`responds with 200 and an empty list`, () => {
             return supertest(app)
               .get('/api/courses')
-              .expect(200)
+              .expect(200, [])
           })
         })
 
