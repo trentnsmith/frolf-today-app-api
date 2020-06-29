@@ -12,25 +12,37 @@ function makeCoursesArray() {
             rating: 4
         },
         {
-            courseId: 2,
+            id: 2,
             course_name: "plattsmouth", 
             holes: 9, 
-            zip: 68048, 
-            location: [41.006574, -95.898543]
+            zipcode: 68048, 
+            latitude: 41.006574,
+            longitude: -95.898543,
+            city: 'Omaha',
+            state: 'Nebraska',
+            rating: 4
         },
         {
-            courseId: 3, 
+            id: 3, 
             course_name: "omaha course", 
             holes: 18, 
-            zip: 68106, 
-            location: [41.339253, -96.046986]
+            zipcode: 68106, 
+            latitude: 41.339253,
+            longitude: -96.046986,
+            city: 'Omaha',
+            state: 'Nebraska',
+            rating: 4
         },
         {
-            courseId: 4, 
+            id: 4, 
             course_name: "lincoln course", 
             holes: 18, 
-            zip: 68105, 
-            location: [40.766155, -96.680029]
+            zipcode: 68105, 
+            latitude: 40.766155,
+            longitude: -96.680029,
+            city: 'Omaha',
+            state: 'Nebraska',
+            rating: 4
         },
     ];
 };

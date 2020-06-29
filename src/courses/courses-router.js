@@ -41,6 +41,8 @@ coursesRouter
     })
     .post(jsonParser, (req, res, next) => {
         const { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description } = req.body
+        latitude = Number(latitude);
+        longitude = Number(longitude);
         const newCourse = { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description }
 
         for (const [key, value] of Object.entries(newCourse)) {
