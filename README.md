@@ -67,7 +67,7 @@ Removes a disc golf and it's data from the database.
 
 MainPage:
 
-![frolf_today_search_main_large](https://user-images.githubusercontent.com/58092710/84978909-b9dc8580-b0f3-11ea-90d4-6329b7789de9.JPG)
+![image](https://user-images.githubusercontent.com/58092710/86085517-f64da100-ba64-11ea-941b-069604f48993.png)
 
 Search Results: 
 
@@ -77,11 +77,13 @@ Course Detail Page:
 
 ![frolf_today_course_detail](https://user-images.githubusercontent.com/58092710/84978965-dd9fcb80-b0f3-11ea-9c83-46e03947ad50.JPG)
 
+Add Course:
+
+![image](https://user-images.githubusercontent.com/58092710/86086200-c2737b00-ba66-11ea-8f3e-764165d14434.png)
+
 ## API used
 
 Google Maps API
-
-PDGA API
 
 ## Technology
 
