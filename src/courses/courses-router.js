@@ -52,7 +52,7 @@ coursesRouter
                 });
             };
         };
-
+        console.log('newCourse', newCourse)
         CoursesService.createCourse(
             req.app.get('db'),
             newCourse

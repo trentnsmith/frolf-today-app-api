@@ -83,7 +83,7 @@ describe('Courses endpoints', () => {
     });
 
     describe('POST /api/courses', () => {
-        it('adds a new course to the database', async () => {
+        it('adds a new course to the database',  () => {
             const newCourse = {
                 course_name: "test course",
                 holes: 18,
@@ -120,13 +120,15 @@ describe('Courses endpoints', () => {
                     expect(res.body.private_course).to.eql(newCourse.private_course)
                     expect(res.body.description).to.eql(newCourse.description)
                     expect(res.headers.location).to.eql(`/api/courses/${res.body.id}`)
-                    
                 })
-                .then(res => 
+                .then(res => {
                     supertest(app)
                         .get(`api/courses/${res.body.id}`)
                         .expect(res.body)
-                );
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         });
     });
 
