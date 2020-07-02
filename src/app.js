@@ -28,8 +28,8 @@ app.get('/', (req, res) => {
 
 //creating server errorHandler
 app.use(function errorHandler(error, req, res, next) {
-    let response
-    console.error(error)
+    let response;
+    console.error(error);
 
     if (NODE_ENV === 'production') {
         response = { error: { message: 'server error' } }

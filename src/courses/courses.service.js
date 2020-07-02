@@ -30,7 +30,7 @@ const CoursesService = {
             .select('*')
             .from('frolf_today_courses')
             .where('id', id)
-            .update(updateFields)
+            .update(updateFields);
     },
 
     createCourse(db, course) {

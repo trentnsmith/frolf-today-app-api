@@ -71,4 +71,4 @@ function makeCoursesArray() {
     ];
 };
 
-module.exports = makeCoursesArray
+module.exports = makeCoursesArray;

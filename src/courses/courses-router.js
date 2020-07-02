@@ -27,23 +27,22 @@ const serializeCourse = course => ({
 coursesRouter
     .route('/')
     .get((req, res, next) => {
-        console.log('req query', req.query)
         CoursesService.getAllCourses(req.app.get('db'))
             .then(course => {
                 console.log('course', course)
                 let newCourse = course.filter((c) => {
                     return Number(c.zipcode) === Number(req.query.zip)
                 })
-                console.log('newcourse', newCourse)
+                
                 res.json(newCourse.map(serializeCourse))
             })
             .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        let { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description } = req.body
+        let { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description } = req.body;
         latitude = Number(latitude);
         longitude = Number(longitude);
-        const newCourse = { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description }
+        const newCourse = { course_name, holes, zipcode, latitude, longitude, city, state_name, website_title, website_url, basket_types, tee_types, course_length, private_course, description };
 
         for (const [key, value] of Object.entries(newCourse)) {
             if (!value) {
@@ -52,7 +51,7 @@ coursesRouter
                 });
             };
         };
-        console.log('newCourse', newCourse)
+        
         CoursesService.createCourse(
             req.app.get('db'),
             newCourse
@@ -64,7 +63,7 @@ coursesRouter
                 .json(serializeCourse(course))
         })
         .catch(next)
-    })
+    });
 
 
 coursesRouter
@@ -78,8 +77,8 @@ coursesRouter
             if (!course) {
                 return res.status(404).json({
                     error: { message: `Course doesn't exist` }
-                })
-            }
+                });
+            };
             res.course = course
             next()
         })

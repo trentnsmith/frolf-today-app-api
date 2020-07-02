@@ -5,21 +5,21 @@ const supertest = require('supertest');
 const { expect } = require('chai');
 
 describe('Courses endpoints', () => {
-    let db
+    let db;
 
     before('make knex instance', () => {
         db = knex({
             client: 'pg',
             connection: process.env.TEST_DATABASE_URL,
-        })
+        });
         app.set('db', db)
-    })
+    });
 
-    after('disconnect from db', () => db.destroy())
+    after('disconnect from db', () => db.destroy());
 
-    before('cleanup', () => db('frolf_today_courses').truncate())
+    before('cleanup', () => db('frolf_today_courses').truncate());
 
-    afterEach('cleanup', () => db('frolf_today_courses').truncate())
+    afterEach('cleanup', () => db('frolf_today_courses').truncate());
 
     describe('GET /api/courses', () => {
         context(`Given no courses`, () => {
@@ -27,8 +27,8 @@ describe('Courses endpoints', () => {
             return supertest(app)
               .get('/api/courses')
               .expect(200)
-          })
-        })
+          });
+        });
 
         context('Given there are courses in the database', () => {
             const testCourses = makeCoursesArray();
@@ -37,20 +37,20 @@ describe('Courses endpoints', () => {
                 return db
                     .into('frolf_today_courses')
                     .insert(testCourses)
-            })
+            });
 
             it('responds with 200 and all of the courses', () => {
                 return supertest(app)
                     .get('/api/courses')
                     .expect(200, [])
-            }) 
-        })
-    })
+            }) ;
+        });
+    });
 
     describe('DELETE /api/courses/:course_id', () => {
         context(`Given no courses`, () => {
             it(`responds 404 when the course doesn't exist`, () => {
-                const id = 12345
+                const id = 12345;
                 return supertest(app)
                     .delete(`/api/courses/${id}`)
                     .expect(404, { error: { message: "Course doesn't exist" } });
@@ -58,14 +58,13 @@ describe('Courses endpoints', () => {
         });
 
         context('Given there are courses in the database', () => {
-            const testCourses = makeCoursesArray()
+            const testCourses = makeCoursesArray();
 
             beforeEach('insert courses', () => {
                 return db
                     .into('frolf_today_courses')
                     .insert(testCourses)
-                    
-            })
+            });
 
             it('removes the course by ID from the store', () => {
                 const idToRemove = 2;
@@ -99,7 +98,7 @@ describe('Courses endpoints', () => {
                 course_length: '4000',
                 private_course: 'no',
                 description: 'test description'
-            }
+            };
             return supertest(app)
                 .post(`/api/courses`)
                 .send(newCourse)
@@ -128,31 +127,31 @@ describe('Courses endpoints', () => {
                 })
                 .catch((error) => {
                     console.log(error)
-                })
+                });
         });
     });
 
     describe(`PATCH /api/courses/:course_id`, () => {
         context(`Given no courses`, () => {
             it(`responds with 404`, () => {
-                const courseId = 5432
+                const courseId = 5432;
                 return supertest(app)
                     .patch(`/api/courses/${courseId}`)
                     .expect(404, { error: { message: `Course doesn't exist` } })
-            })
-        })
+            });
+        });
 
         context(`Given there are courses in the database`, () => {
-            const testCourses = makeCoursesArray()
+            const testCourses = makeCoursesArray();
 
             beforeEach('insert courses', () => {
                 return db
                     .into('frolf_today_courses')
                     .insert(testCourses)
-            })
+            });
 
             it(`Updates the course with 204`, () => {
-                const idToUpdate = 2
+                const idToUpdate = 2;
                 const updateCourse = {
                     id: 2,
                     course_name: 'update course',
@@ -169,11 +168,11 @@ describe('Courses endpoints', () => {
                     course_length: 'update 4000',
                     private_course: 'update no',
                     description: 'update description'
-                  } 
+                  } ;
                 const expectedCourse = {
                     ...testCourses[idToUpdate - 1],
                     ...updateCourse
-                }
+                };
                 return supertest(app)
                     .patch(`/api/courses/${idToUpdate}`)
                     .send(updateCourse)
@@ -182,7 +181,7 @@ describe('Courses endpoints', () => {
                         supertest(app)
                             .get(`/api/courses/${idToUpdate}`)
                             .expect(200))
-            })
-        })
-    })
-})
+            });
+        });
+    });
+});
