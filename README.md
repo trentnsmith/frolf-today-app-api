@@ -71,11 +71,11 @@ MainPage:
 
 Search Results: 
 
-![frolf_today_search_results_large](https://user-images.githubusercontent.com/58092710/84978941-cfea4600-b0f3-11ea-88f7-b354ed97fa16.JPG)
+![image](https://user-images.githubusercontent.com/58092710/86303087-590f7b80-bbd0-11ea-8324-f54f725cbcad.png)
 
 Course Detail Page:
 
-![frolf_today_course_detail](https://user-images.githubusercontent.com/58092710/84978965-dd9fcb80-b0f3-11ea-9c83-46e03947ad50.JPG)
+![image](https://user-images.githubusercontent.com/58092710/86303028-2a91a080-bbd0-11ea-81f8-de08d9e77d8d.png)
 
 Add Course:
 
