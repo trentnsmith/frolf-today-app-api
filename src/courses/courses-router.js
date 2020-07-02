@@ -29,7 +29,6 @@ coursesRouter
     .get((req, res, next) => {
         CoursesService.getAllCourses(req.app.get('db'))
             .then(course => {
-                console.log('course', course)
                 let newCourse = course.filter((c) => {
                     return Number(c.zipcode) === Number(req.query.zip)
                 })
